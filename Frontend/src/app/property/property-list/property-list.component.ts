@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,48 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property-list.component.css']
 })
 export class PropertyListComponent implements OnInit {
-  properties:Array<any>=[
-    {
-    "Id":1,
-    "Name":"Birla House",
-    "Type":"House",
-    "Price":12000
-    },
-    {
-      "Id":2,
-      "Name":"Erose Villa",
-      "Type":"Villa",
-      "Price":13000
-      },
-      {
-        "Id":3,
-        "Name":"Mark Hill",
-        "Type":"Flat",
-        "Price":12500
-        },
-        {
-          "Id":4,
-          "Name":"Gun Hill",
-          "Type":"Duplex",
-          "Price":11400
-          },
-          {
-            "Id":5,
-            "Name":"Marco House",
-            "Type":"House",
-            "Price":14300
-            },
-            {
-              "Id":6,
-              "Name":"Pearl White House",
-              "Type":"House",
-              "Price":18000
-              },
-  ]
-
-  constructor() { }
+  properties:Array<any>=[];
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get('data/properties.json').subscribe(
+      data=>console.log(data)
+    );
   }
 
 }
